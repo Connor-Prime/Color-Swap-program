@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1 class="banner">Color Shade Pro</h1>
+  <div class="main-area">
+
+  <div>
+    <h3>Add file below</h3>
+    <input type="file" id="imageInput">
+    <br>
+    <canvas id="myCanvas" width="0" height="0"></canvas>
+    <br>
+  </div>
+  <div>
+    <!--Brush Tool-->
+    <h3>Color Brush Tools</h3>
+    <button id="brush_button">Color Brush</button><br>
+    <label for="brushColor">Brush Color:</label>
+    <input type="color" id="brushColor" value="#ff0000">
+    <br>
+    <label for='brushSize'>Color Brush Radius:</label>
+    <input type="range" id='brushSize' min="1" max="100" value="10">
+    <p id="brushRadiusText">Brush radius: 10</p>
+    <script src="brush.js"></script>
+
+
+    <!--Color Replacement Tools-->
+    <h3>Color Replacement Tools</h3>
+    <label for="targetColor">Target Color:</label>
+    <input type="color" id="targetColor" value="#ff0000">
+    <br>
+    <label for="replacementColor">Replacement Color:</label>
+    <input type="color" id="replacementColor" value="#00ff00">
+    <br>
+    <label for="rangeSlider">Range:</label>
+    <input type="range" id="rangeSlider" min="0" max="100" value="20">
+    <br>
+    <button id="applyColorChange">Apply Color Change</button>
+    <button id="revertImage">Revert Image</button>
+
+    <script src="colorChange.js"></script>
+
+    <!--Shading tools-->
+    <h3>Quick Shade Tools</h3>
+    <button id="increaseColors">Lighten</button>
+    <button id="decreaseColors">Darken</button>
+    <br>
+    <label for="radiusSlider">Shading Brush Radius:</label>
+    <input type="range" id="radiusSlider" min="1" max="100" value="10">
+    <br>
+    <label for="changeValueSlider">Shading Brush Potency:</label>
+    <input type="range" id="changeValueSlider" min="1" max="100" value="7">
+    <br>
+    <label for="ShadeSpeedSlider">Shade Brush Speed:</label>
+    <input type="range" id="ShadeSpeedSlider" min="0" max="500" value="350">
+    <br>
+    <label for="shadeProofColor">Shadeproof Color:</label>
+    <input type="color" id="shadeProofColor" value="#00ff00"><br>
+    <label for="ShadeproofThreshold">Range:</label>
+    <input type="range" id="ShadeproofThreshold" min="0" max="100" value="20">
+    <script src="shadingTools.js"></script>
+  </div>
+      
+</div>
+  
+    
+  </body>
+</html>
