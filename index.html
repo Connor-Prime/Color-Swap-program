@@ -3,8 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Color Shde Pro</title>
     <link rel="stylesheet" href="style.css">
+
+
+    <script src="./js/shadingTools.js" defer></script>
+    <script src="./js/brush.js" defer></script>
+    <script src="./js/colorChange.js" defer></script>
   </head>
   <body>
     <h1 class="banner">Color Shade Pro</h1>
@@ -27,7 +32,7 @@
     <label for='brushSize'>Color Brush Radius:</label>
     <input type="range" id='brushSize' min="1" max="100" value="10">
     <p id="brushRadiusText">Brush radius: 10</p>
-    <script src="brush.js"></script>
+    
 
 
     <!--Color Replacement Tools-->
@@ -44,7 +49,7 @@
     <button id="applyColorChange">Apply Color Change</button>
     <button id="revertImage">Revert Image</button>
 
-    <script src="colorChange.js"></script>
+  
 
     <!--Shading tools-->
     <h3>Quick Shade Tools</h3>
@@ -64,7 +69,7 @@
     <input type="color" id="shadeProofColor" value="#00ff00"><br>
     <label for="ShadeproofThreshold">Range:</label>
     <input type="range" id="ShadeproofThreshold" min="0" max="100" value="20">
-    <script src="shadingTools.js"></script>
+ 
   </div>
       
 </div>
