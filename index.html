@@ -6,9 +6,6 @@
     <title>Color Shde Pro</title>
     <link rel="stylesheet" href="style.css">
 
-
-    <script src="./js/shadingTools.js" defer></script>
-    <script src="./js/brush.js" defer></script>
     <script src="./js/colorChange.js" defer></script>
   </head>
   <body>
@@ -23,19 +20,7 @@
     <br>
   </div>
   <div>
-    <!--Brush Tool-->
-    <h3>Color Brush Tools</h3>
-    <button id="brush_button">Color Brush</button><br>
-    <label for="brushColor">Brush Color:</label>
-    <input type="color" id="brushColor" value="#ff0000">
-    <br>
-    <label for='brushSize'>Color Brush Radius:</label>
-    <input type="range" id='brushSize' min="1" max="100" value="10">
-    <p id="brushRadiusText">Brush radius: 10</p>
-    
 
-
-    <!--Color Replacement Tools-->
     <h3>Color Replacement Tools</h3>
     <label for="targetColor">Target Color:</label>
     <input type="color" id="targetColor" value="#ff0000">
@@ -47,29 +32,10 @@
     <input type="range" id="rangeSlider" min="0" max="100" value="20">
     <br>
     <button id="applyColorChange">Apply Color Change</button>
-    <button id="revertImage">Revert Image</button>
+      <br>
+      <br>
+    <button>Get Suggestions</button>
 
-  
-
-    <!--Shading tools-->
-    <h3>Quick Shade Tools</h3>
-    <button id="increaseColors">Lighten</button>
-    <button id="decreaseColors">Darken</button>
-    <br>
-    <label for="radiusSlider">Shading Brush Radius:</label>
-    <input type="range" id="radiusSlider" min="1" max="100" value="10">
-    <br>
-    <label for="changeValueSlider">Shading Brush Potency:</label>
-    <input type="range" id="changeValueSlider" min="1" max="100" value="7">
-    <br>
-    <label for="ShadeSpeedSlider">Shade Brush Speed:</label>
-    <input type="range" id="ShadeSpeedSlider" min="0" max="500" value="350">
-    <br>
-    <label for="shadeProofColor">Shadeproof Color:</label>
-    <input type="color" id="shadeProofColor" value="#00ff00"><br>
-    <label for="ShadeproofThreshold">Range:</label>
-    <input type="range" id="ShadeproofThreshold" min="0" max="100" value="20">
- 
   </div>
       
 </div>
