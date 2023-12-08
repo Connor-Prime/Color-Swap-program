@@ -3,16 +3,40 @@
 }
 
 body{
-	color: white;
 	background-color: rgb(52, 51, 51);
 }
 
 .banner{
 	background-color: black;
 	padding: 10px;
+	color: aliceblue;
 }
 
 .main-area{
 	display: flex;
 	flex-direction: row;
+}
+
+#colorSuggestions{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#colorSuggestions>button{
+	width: 75%;
+	margin-top: 5px;
+	border: 3pt black solid;
+	text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px white;
+	font-size: 1.2em;
+}
+
+#toolbar{
+	background-color: beige;
+	padding: 2%;
+	margin-top: 4.8em;
+	border: 5px black solid;
+}
+.image-area{
+	color: white;
 }

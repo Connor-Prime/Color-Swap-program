@@ -11,6 +11,9 @@
     // Get the range slider element
     let rangeSlider = document.getElementById('rangeSlider');
 
+    let suggestionButton = document.getElementById("getSuggestionButton")
+
+
     // Function to check if a color is within the range of another color
     function isWithinRange(color1, color2, range) {
       return (
@@ -118,6 +121,37 @@
     let applyColorChangeButton = document.getElementById('applyColorChange');
     applyColorChangeButton.addEventListener('click', applyColorChange);
 
-    // Add event listener for the "Revert Image" button click
-    let revertImageButton = document.getElementById('revertImage');
-    revertImageButton.addEventListener('click', revertImage);
+
+// Get colors from API
+const getColorSuggestions = async()=>{
+
+  const hex =targetColorPicker.value.substring(1,targetColorPicker.value.length);
+  const reponse = await fetch(`https://www.thecolorapi.com/scheme?hex=${hex}`);
+  const data = await reponse.json();
+  console.log(data["colors"]);
+
+
+  for(let i=0;i<5;i++){
+    let color=data["colors"][i]
+    let hexColor =color["hex"]["value"]
+    let constrast = color["contrast"]["value"]
+
+    let suggestion = document.getElementById("colorSuggestions"+String(i+1))
+    suggestion.innerHTML=color["name"]["value"] +"<br></br>" + hexColor 
+
+    if(constrast=="#000000"){
+      suggestion.style=`background-color:${hexColor}; color: ${constrast}; text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px white;`
+    }else{
+      suggestion.style=`background-color:${hexColor}; color: ${constrast}; text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px black;`
+    }
+
+
+    suggestion.addEventListener("click",()=>{
+      replacementColorPicker.value=hexColor
+    })
+  }
+
+}
+
+
+suggestionButton.addEventListener("click",getColorSuggestions);

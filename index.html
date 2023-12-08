@@ -3,23 +3,23 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Shde Pro</title>
+    <title>Color Swap</title>
     <link rel="stylesheet" href="style.css">
 
     <script src="./js/colorChange.js" defer></script>
   </head>
   <body>
-    <h1 class="banner">Color Shade Pro</h1>
+    <h1 class="banner">Color Swap</h1>
   <div class="main-area">
 
-  <div>
+  <div class="image-area">
     <h3>Add file below</h3>
     <input type="file" id="imageInput">
     <br>
     <canvas id="myCanvas" width="0" height="0"></canvas>
     <br>
   </div>
-  <div>
+  <div id="toolbar">
 
     <h3>Color Replacement Tools</h3>
     <label for="targetColor">Target Color:</label>
@@ -28,13 +28,20 @@
     <label for="replacementColor">Replacement Color:</label>
     <input type="color" id="replacementColor" value="#00ff00">
     <br>
-    <label for="rangeSlider">Range:</label>
+    <label for="rangeSlider">Threshold:</label>
     <input type="range" id="rangeSlider" min="0" max="100" value="20">
     <br>
     <button id="applyColorChange">Apply Color Change</button>
       <br>
       <br>
-    <button>Get Suggestions</button>
+    <button id="getSuggestionButton">Get Suggestions</button>
+    <div id="colorSuggestions">
+      <button id="colorSuggestions1"></button>
+      <button id="colorSuggestions2"> </button>
+      <button id="colorSuggestions3"> </button>
+      <button id="colorSuggestions4"> </button>
+      <button id="colorSuggestions5"> </button>
+    </div>
 
   </div>
       
