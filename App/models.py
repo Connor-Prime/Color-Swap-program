@@ -32,13 +32,13 @@ class User(db.Model, UserMixin):
 
 
     def __repr__(self):
-            return f"<User: {self.username}>"
+        return f"<User: {self.username}>"
     
     def set_password(self, password):
-         self.password= generate_password_hash(password)
+         return generate_password_hash(password)
 
     def set_id(self):
-         self.user_id=str(uuid.uuid4())
+        return str(uuid.uuid4())
 
     def get_id(self):
         return str(self.user_id)

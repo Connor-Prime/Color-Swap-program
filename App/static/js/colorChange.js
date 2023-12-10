@@ -13,6 +13,8 @@
 
     let suggestionButton = document.getElementById("getSuggestionButton")
 
+    const colorSuggestions = document.getElementById("colorSuggestions")
+
 
     // Function to check if a color is within the range of another color
     function isWithinRange(color1, color2, range) {
@@ -130,7 +132,8 @@ const getColorSuggestions = async()=>{
   const data = await reponse.json();
   console.log(data["colors"]);
 
-
+  colorSuggestions.hidden=false;
+  
   for(let i=0;i<5;i++){
     let color=data["colors"][i]
     let hexColor =color["hex"]["value"]

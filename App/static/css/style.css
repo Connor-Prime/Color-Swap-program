@@ -52,3 +52,10 @@ body{
 .auth-form>*>*{
 	margin-bottom: 1%;
 }
+
+.banner{
+	display: flex;
+	flex-direction: row;
+	gap: 2%;
+	align-items: center;
+}

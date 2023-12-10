@@ -1,7 +1,9 @@
 {%include 'base.html'%}
+{% if current_user.is_authenticated %}
 <script src="./static/js/colorChange.js" defer></script>
-<div class="main-area">
 
+<div class="main-area">
+ 
 <div class="image-area">
     <h3>Add file below</h3>
     <input type="file" id="imageInput">
@@ -25,7 +27,7 @@
       <br>
       <br>
     <button id="getSuggestionButton">Get Suggestions</button>
-    <div id="colorSuggestions">
+    <div id="colorSuggestions" hidden>
       <button id="colorSuggestions1"></button>
       <button id="colorSuggestions2"> </button>
       <button id="colorSuggestions3"> </button>
@@ -34,4 +36,6 @@
     </div>
 
   </div>
+
 </div>
+{%endif%}
