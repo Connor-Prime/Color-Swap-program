@@ -1,0 +1,37 @@
+{%include 'base.html'%}
+<script src="./static/js/colorChange.js" defer></script>
+<div class="main-area">
+
+<div class="image-area">
+    <h3>Add file below</h3>
+    <input type="file" id="imageInput">
+    <br>
+    <canvas id="myCanvas" width="0" height="0"></canvas>
+    <br>
+  </div>
+  <div id="toolbar">
+
+    <h3>Color Replacement Tools</h3>
+    <label for="targetColor">Target Color:</label>
+    <input type="color" id="targetColor" value="#ff0000">
+    <br>
+    <label for="replacementColor">Replacement Color:</label>
+    <input type="color" id="replacementColor" value="#00ff00">
+    <br>
+    <label for="rangeSlider">Threshold:</label>
+    <input type="range" id="rangeSlider" min="0" max="100" value="20">
+    <br>
+    <button id="applyColorChange">Apply Color Change</button>
+      <br>
+      <br>
+    <button id="getSuggestionButton">Get Suggestions</button>
+    <div id="colorSuggestions">
+      <button id="colorSuggestions1"></button>
+      <button id="colorSuggestions2"> </button>
+      <button id="colorSuggestions3"> </button>
+      <button id="colorSuggestions4"> </button>
+      <button id="colorSuggestions5"> </button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<div class="auth-form">
+    <form action=""method="POST">
+        <h3>Sign In</h3>
+        <div>
+            {{form.email.label}}
+            {{ form.email(class='form-control', placeholder='username') }}
+            {% for error in form.email.errors %}
+                <span class="err-msg"> {{ error }}</span>
+            {% endfor %}
+        </div>
+       
+        <div>
+            {{form.password.label}}
+            {{ form.password(class='form-control', placeholder='password') }}
+            {% for error in form.password.errors %}
+                <span class="err-msg"> {{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.submit(class='btn btn-primary') }}
+        </div>
+    </form>
+
+
+</div>
+
+
+{%endblock content%}
+
