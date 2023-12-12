@@ -1,0 +1,29 @@
+<div class="auth-form pop-up" id="saveForm" hidden="true">
+   <button class="close" id="closeForm">X</button>
+    <form action='/add_image/' method="POST">
+        {{form.hidden_tag()}}
+        <h3>Save Image</h3>
+        <div>
+            {{form.name.label}}
+            {{ form.name(class='form-control', placeholder='Frog Drawing') }}
+            {% for error in form.name.errors %}
+                <span class="err-msg"> {{ error }}</span>
+            {% endfor %}
+        </div>
+       
+        <div>
+            {{form.description.label}}
+            {{ form.description(class='form-control', placeholder='Apple green frog') }}
+            {% for error in form.description.errors %}
+                <span class="err-msg"> {{ error }}</span>
+            {% endfor %}
+            {{ form.image(id="imageString") }}
+        </div>
+        <div>
+            {{ form.submit(class='btn btn-primary') }}
+        </div>
+    </form>
+
+
+</div>
+

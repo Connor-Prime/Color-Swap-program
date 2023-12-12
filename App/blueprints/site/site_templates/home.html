@@ -1,0 +1,87 @@
+{%extends 'base.html'%}
+{%block content%}
+{% if current_user.is_authenticated %}
+<script src="../../../static/js/colorChange.js" defer></script>
+
+<meta id="image-data" data-name={{image}}>
+
+<div class="main-area">
+    
+
+    <div class="image-area">
+      {%if image==None%}
+      <h3>Add file below</h3>
+      <input type="file" id="imageInput">
+      <br>
+      <canvas id="myCanvas" width="200" height="200"></canvas>
+      <br>
+    {%else%}
+
+    
+    <input type="file" id="imageInput" hidden>
+    <img id="canvasImage" src={{image.image}} hidden>
+    <canvas id="myCanvas" style="margin-top: 8vh;"></canvas>
+    <script>
+      var canvasImage =document.getElementById("canvasImage")
+      var canvas = document.getElementById("myCanvas");
+      var ctx = canvas.getContext("2d");
+
+      canvas.height=canvasImage.height
+      canvas.width = canvasImage.width
+      ctx.drawImage(canvasImage, 0, 0);
+    </script>
+
+    
+    {%endif%}
+  </div>
+
+  <div id="toolbar">
+
+    <h3>Color Replacement Tools</h3>
+    <label for="targetColor">Target Color:</label>
+    <input type="color" id="targetColor" value="#ff0000">
+    <br>
+    <label for="replacementColor">Replacement Color:</label>
+    <input type="color" id="replacementColor" value="#00ff00">
+    <br>
+    <label for="rangeSlider">Threshold:</label>
+    <input type="range" id="rangeSlider" min="0" max="100" value="20">
+    <br>
+    <button id="applyColorChange">Apply Color Change</button>
+    <br>
+    <br>
+    <button id="getSuggestionButton">Get Suggestions</button>
+    <div id="colorSuggestions" hidden>
+      <button id="colorSuggestions1"></button>
+      <button id="colorSuggestions2"> </button>
+      <button id="colorSuggestions3"> </button>
+      <button id="colorSuggestions4"> </button>
+      <button id="colorSuggestions5"> </button>
+    </div>
+    <h3 style="border-top: 3px solid #000000; margin-top:20px"></h3>
+    <h3>Save Image</h3>
+    <button id="downloadButton">Download Image</button>
+    
+
+    {%if updateForm != None%}
+    <button id="quickSave">Save Onlne</button>
+    <button id="saveOnlineButton">Save Online As</button>
+    {%else%}
+    <button id="saveOnlineButton">Save Online</button>
+    {%endif%}
+  </div>
+  {%include 'imageForm.html'%}
+  {%if updateForm!=None%}
+
+  {%include "UpdateimageForm.html"%}
+
+  <script>
+    var imageDict = JSON.parse('{{imageDict| tojson | safe}}');
+    document.getElementById("updateId").value = imageDict["id"]
+  </script>
+
+{%endif%}
+  
+</div>
+{%endif%}
+{%endblock%}

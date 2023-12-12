@@ -1,0 +1,22 @@
+<div class="auth-form pop-up" id="updateForm" hidden>
+   <button class="close" id="closeUpdateForm">X</button>
+    <form action='/save_image/' method="POST">
+        <h3>Save Image?</h3>
+        <div hidden>
+            {{ updateForm.id(id="updateId") }}
+        </div>
+       
+        <div hidden>
+            {{ updateForm.image(id="updateImageImage") }}
+        </div>
+        <p id="LastSave">
+            
+        </p>
+        <button>
+            {{ updateForm.submit(id="updateId") }}
+        </button>
+    </form>
+
+
+</div>
+

@@ -1,6 +1,6 @@
  // Get the canvas element
-    let canvas = document.getElementById('myCanvas');
-    let context = canvas.getContext('2d');
+    var canvas = document.getElementById('myCanvas');
+    var context = canvas.getContext('2d');
 
     // Get the target color picker element
     let targetColorPicker = document.getElementById('targetColor');
@@ -158,3 +158,67 @@ const getColorSuggestions = async()=>{
 
 
 suggestionButton.addEventListener("click",getColorSuggestions);
+
+function download_image(){
+  var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+  var link = document.createElement('a');
+  link.download = "my-image.png";
+  link.href = image;
+  link.click();
+}
+
+// Save functions
+
+let downloadButton = document.getElementById("downloadButton");
+
+downloadButton.addEventListener("click",download_image);
+
+let saveOnlineButton = document.getElementById("saveOnlineButton")
+
+const getImageUrl = () =>{
+  let data=canvas.toDataURL("image/png");
+  return data;
+}
+
+const saveForm = document.getElementById("saveForm");
+const imageString = document.getElementById("imageString");
+
+saveOnlineButton.addEventListener("click",()=>{
+  imageString.value= getImageUrl();
+  saveForm.hidden= false;
+})
+
+let closefrom = document.getElementById("closeForm")
+
+closefrom.addEventListener("click",()=>{
+  saveForm.hidden=true;
+})
+
+const img = new Image();
+
+
+const updateImageString = document.getElementById("updateImageImage")
+const updateId = document.getElementById("updateId")
+let quickSave=document.getElementById("quickSave")
+
+
+let closeSaveform = document.getElementById("closeUpdateForm")
+let updateForm = document.getElementById("updateForm")
+
+closeSaveform.addEventListener("click",()=>{
+  updateForm.hidden = true;
+})
+
+quickSave.addEventListener("click",()=>{
+  updateImageString.value = getImageUrl();
+  updateForm.hidden=false;
+})
+
+saveOnlineButton.addEventListener("click",()=>{
+  imageString.value= getImageUrl();
+  saveForm.hidden= false;
+
+})
+
+
+
