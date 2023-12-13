@@ -14,7 +14,7 @@ site = Blueprint('site', __name__, template_folder='site_templates')
 
 
 @site.route("/")
-def shop(id=None):
+def shop(id=None,imageString=None):
 
     if id != None:
         updateForm = UpdateImageForm()
@@ -25,6 +25,7 @@ def shop(id=None):
                       "id":image.image_id,
                       "description":image.description
                      }
+        imageString = image.image
     else:
         data=None
         updateForm = None
@@ -33,7 +34,7 @@ def shop(id=None):
     saveForm = SaveImageForm()
     
 
-    return render_template('home.html', form=saveForm,image=data,updateForm = updateForm,imageDict = imageDict)
+    return render_template('home.html', form=saveForm,image=data,updateForm = updateForm,imageDict = imageDict,imageString=imageString)
 
 
 @site.route('/add_image/', methods=['POST'])
@@ -45,20 +46,26 @@ def open(image=None):
     form = SaveImageForm()
 
     if request.method == 'POST' and form.validate_on_submit():
+
+       
+
         name = form.name.data
         image = form.image.data
         description = form.description.data
 
         user = current_user
+        
+        btyeSize = len(image.encode('utf-8'))
 
-        print(current_user.get_id())
+        print(btyeSize)
+        if btyeSize > 120000:
+            flash(f"File too large. Max Size 90 bytes. Please store locally instead.", category="warning")
+            return shop(imageString=image)
 
         newImage = Image(name,image, user.get_id(),description)
 
         db.session.add(newImage)
         db.session.commit()
-
-        print(newImage.image)
 
         flash(f"{name} has been added to your images.",category="success")
 
@@ -88,6 +95,8 @@ def save_image():
     if request.method == 'POST':
         image = Image.query.get(form.id.data)
         image.image=form.image.data
+        image.name = str(form.name.data)
+        image.description = str(form.description.data)
         db.session.commit()
         return redirect(f'/open_image/{form.id.data}')
     else:

@@ -2,25 +2,25 @@
 {%block content%}
 {% if current_user.is_authenticated %}
 <script src="../../../static/js/colorChange.js" defer></script>
-
+<h3 style="color: aliceblue;">Name:</h3><input type="text" id ="imageName" value={{image.name}} style="background-color: aliceblue;" maxlength="50">
+<h4 style="color: aliceblue;">Description:</h4><textarea type="text" id ="imageDescription" value={{image.name}} style="background-color: aliceblue; width:30vw" maxlength="200"></textarea>
+{%endif%}
 <meta id="image-data" data-name={{image}}>
 
 <div class="main-area">
-    
-
+  
     <div class="image-area">
-      {%if image==None%}
+{%if image==None and imageString==None%}
       <h3>Add file below</h3>
       <input type="file" id="imageInput">
       <br>
       <canvas id="myCanvas" width="200" height="200"></canvas>
       <br>
     {%else%}
-
     
     <input type="file" id="imageInput" hidden>
-    <img id="canvasImage" src={{image.image}} hidden>
-    <canvas id="myCanvas" style="margin-top: 8vh;"></canvas>
+    <img id="canvasImage" src={{imageString}} hidden>
+    <canvas id="myCanvas" style="margin-top: 75px;"></canvas>
     <script>
       var canvasImage =document.getElementById("canvasImage")
       var canvas = document.getElementById("myCanvas");
@@ -64,7 +64,7 @@
     
 
     {%if updateForm != None%}
-    <button id="quickSave">Save Onlne</button>
+    <button id="quickSave">Save Online</button>
     <button id="saveOnlineButton">Save Online As</button>
     {%else%}
     <button id="saveOnlineButton">Save Online</button>
@@ -78,10 +78,12 @@
   <script>
     var imageDict = JSON.parse('{{imageDict| tojson | safe}}');
     document.getElementById("updateId").value = imageDict["id"]
+    console.log(imageDict)
+    document.getElementById("imageName").value=imageDict["name"]
+    document.getElementById("imageDescription").value = imageDict["description"]
   </script>
 
 {%endif%}
   
 </div>
-{%endif%}
 {%endblock%}

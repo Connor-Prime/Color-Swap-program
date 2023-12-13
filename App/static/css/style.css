@@ -64,7 +64,7 @@ body{
 
 .pop-up{
 	position: absolute;
-	margin-top: 0vw;
+	margin-top: 15vh;
 }
 
 .close{
@@ -100,10 +100,11 @@ body{
 
 #updateForm{
 	position: absolute;
-	margin-top: 0vw;
+	margin-top: 15vh;
 }
 
 .deleteButton{
 	background-color: red;
 	color: aliceblue;
+
 }

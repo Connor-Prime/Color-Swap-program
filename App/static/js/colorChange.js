@@ -16,6 +16,7 @@
     const colorSuggestions = document.getElementById("colorSuggestions")
 
 
+    let savelist = []
     // Function to check if a color is within the range of another color
     function isWithinRange(color1, color2, range) {
       return (
@@ -55,11 +56,7 @@
 
       let range = parseInt(rangeSlider.value);
 
-      // Save previous image data before applying color change
-      previousImageData = context.getImageData(0, 0, canvas.width, canvas.height);
-      previousImageURL = canvas.toDataURL();
-
-      let imageData = previousImageData;
+      console.log(savelist)
       let pixels = imageData.data;
 
       for (let i = 0; i < pixels.length; i += 4) {
@@ -81,14 +78,8 @@
     // Function to revert the canvas image to the previous image
     function revertImage() {
       if (previousImageData) {
-        context.putImageData(previousImageData, 0, 0);
-      } else if (previousImageURL) {
-        let image = new Image();
-        image.onload = function() {
-          context.drawImage(image, 0, 0);
-        };
-        image.src = previousImageURL;
-      }
+        context.putImageData(savelist.pop, 0, 0);
+      } 
     }
 
     // Function to handle image file upload
@@ -104,7 +95,7 @@
 
         // Save the initial image as the previous image
         previousImageData = context.getImageData(0, 0, canvas.width, canvas.height);
-        previousImageURL = canvas.toDataURL();
+        previousImageURL = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
       };
 
       let reader = new FileReader();
@@ -199,6 +190,12 @@ const img = new Image();
 
 const updateImageString = document.getElementById("updateImageImage")
 const updateId = document.getElementById("updateId")
+const updateName = document.getElementById("updateImageName")
+const updateDescription = document.getElementById("updateImageDescription")
+
+const imageName = document.getElementById("imageName")
+const imageDescription = document.getElementById("imageDescription")
+
 let quickSave=document.getElementById("quickSave")
 
 
@@ -211,6 +208,8 @@ closeSaveform.addEventListener("click",()=>{
 
 quickSave.addEventListener("click",()=>{
   updateImageString.value = getImageUrl();
+  updateDescription.value = imageDescription.value;
+  updateName.value = imageName.value;
   updateForm.hidden=false;
 })
 
@@ -219,6 +218,3 @@ saveOnlineButton.addEventListener("click",()=>{
   saveForm.hidden= false;
 
 })
-
-
-
