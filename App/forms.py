@@ -13,3 +13,16 @@ class SignUpForm(FlaskForm):
     password = PasswordField('Password', validators = [ DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[ DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
+
+class SaveImageForm(FlaskForm):
+    name = StringField('Image Name', validators=[ DataRequired()])
+    description = StringField('Note/ Description (Optional)')
+    image = StringField('Image', validators=[ DataRequired()])
+    submit = SubmitField('Save to Your Account')
+
+class UpdateImageForm(FlaskForm):
+    id = StringField('Image id')
+    image = StringField('Image')
+    name = StringField('name')
+    description=StringField('description')
+    submit = SubmitField('Save image')

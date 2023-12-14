@@ -3,7 +3,9 @@
 {%block content%}
 
 <div class="auth-form">
+   
     <form action=""method="POST">
+        {{form.hidden_tag()}}
         <h3>Sign In</h3>
         <div>
             {{form.email.label}}

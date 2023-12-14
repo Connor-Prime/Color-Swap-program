@@ -28,7 +28,7 @@ def signUp():
             flash(f"Email already exists. Please Try Again", category='warning')
             return redirect('/signup')
         
-        user = User(username,email, password)
+        user = User(username=username,email=email, password=password)
 
         db.session.add(user)
         db.session.commit()
@@ -57,7 +57,7 @@ def signIn():
             flash(f"Successfully logged in {email}", category='success') 
             return redirect('/') #so if a user successfully logs in, we are going to send them home 
         else:
-            flash("Invalid email or password. Please try again")
+            flash("Invalid email or password. Please try again",category="warning")
             return redirect("/signin")
         
     return render_template('sign_in.html',form=signInForm)

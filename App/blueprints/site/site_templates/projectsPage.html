@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+
+{%block content%}
+{% if current_user.is_authenticated %}
+<h3 style="text-align:center; color:white">Your projects</h3>
+    {%if images!=[]%}
+
+        {%for image in images%}
+        <div class="imageDisplay">
+                <div>
+                    <img src={{image.image}} class="thumbnail"><br>
+                    <a href="/delete_image/{{image.image_id}}" >
+                        <button class="deleteButton">delete</button>
+                    </a>
+
+                </div>
+                <div>
+                    <a  href="/open_image/{{image.image_id}}">
+                        <h4>{{image.name}}</h4>
+                    </a>
+                    <br>
+                    <p>{{image.description}}</p>
+                </div>
+            </div>
+        {%else%}
+            <h4 style="color: azure; padding-left:4vw; text-align:center">Click <a href="/" style="color: aqua;">New Project</a> to explore a canvas of colorful comibinations</h4>
+        {%endfor%}
+
+    {%endif%}
+
+
+{%endif%}
+{%endblock content%}

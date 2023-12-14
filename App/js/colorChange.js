@@ -1,6 +1,6 @@
  // Get the canvas element
-    let canvas = document.getElementById('myCanvas');
-    let context = canvas.getContext('2d');
+    var canvas = document.getElementById('myCanvas');
+    var context = canvas.getContext('2d');
 
     // Get the target color picker element
     let targetColorPicker = document.getElementById('targetColor');
@@ -155,3 +155,10 @@ const getColorSuggestions = async()=>{
 
 
 suggestionButton.addEventListener("click",getColorSuggestions);
+
+let closefrom = document.getElementById("closeForm")
+let saveForm = document.getElementById("saveForm")
+
+closefrom.addEventListener("click",()=>{
+  saveForm.hidden=true;
+})
