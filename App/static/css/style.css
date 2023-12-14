@@ -10,6 +10,8 @@ body{
 .main-area{
 	display: flex;
 	flex-direction: row;
+	flex-wrap: nowrap;
+	gap:1%
 }
 
 #colorSuggestions{
@@ -29,13 +31,8 @@ body{
 #toolbar{
 	background-color: beige;
 	padding: 2%;
-	margin-top: 4.8em;
 	border: 5px black solid;
 }
-.image-area{
-	color: white;
-}
-
 .auth-form{
 	margin-top: 15%;
 	background-color: white;

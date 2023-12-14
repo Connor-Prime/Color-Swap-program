@@ -98,9 +98,9 @@ def save_image():
         image.name = str(form.name.data)
         image.description = str(form.description.data)
         db.session.commit()
-        return redirect(f'/open_image/{form.id.data}')
+        return shop(id=image.image_id)
     else:
-        return redirect(f'/open_image/{form.id.data}')
+        return shop(id=image.image_id)
     
 @site.route("/delete_image/<id>")
 def delete_image(id):

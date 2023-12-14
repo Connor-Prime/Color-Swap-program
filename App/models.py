@@ -59,7 +59,7 @@ class Image(db.Model):
 
     image_id = db.Column(db.String(),primary_key=True)
     name = db.Column(db.String(50))
-    image = db.Column(db.String(45000))
+    image = db.Column(db.Text)
     description = db.Column(db.String(200))
     user_id = db.Column(db.String, db.ForeignKey('user.user_id'))
 

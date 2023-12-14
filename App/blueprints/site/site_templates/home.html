@@ -2,25 +2,47 @@
 {%block content%}
 {% if current_user.is_authenticated %}
 <script src="../../../static/js/colorChange.js" defer></script>
-<h3 style="color: aliceblue;">Name:</h3><input type="text" id ="imageName" value={{image.name}} style="background-color: aliceblue;" maxlength="50">
-<h4 style="color: aliceblue;">Description:</h4><textarea type="text" id ="imageDescription" value={{image.name}} style="background-color: aliceblue; width:30vw" maxlength="200"></textarea>
+
+{%if image%}
+  <h3 style="color: aliceblue;">Name:</h3><input type="text" id ="imageName" value={{image.name}} style="background-color: aliceblue;" maxlength="50">
+  <h4 style="color: aliceblue;">Description:</h4><textarea type="text" id ="imageDescription" value={{image.description}} style="background-color: aliceblue; width:30vw" maxlength="200"></textarea>
+{%else%}
+<h3 style="color: aliceblue;">Name:</h3><input type="text" id ="imageName" style="background-color: aliceblue;" maxlength="50">
+  <h4 style="color: aliceblue;">Description:</h4><textarea type="text" id ="imageDescription" style="background-color: aliceblue; width:30vw" maxlength="200"></textarea>
 {%endif%}
+
+
 <meta id="image-data" data-name={{image}}>
 
 <div class="main-area">
   
-    <div class="image-area">
-{%if image==None and imageString==None%}
-      <h3>Add file below</h3>
-      <input type="file" id="imageInput">
-      <br>
-      <canvas id="myCanvas" width="200" height="200"></canvas>
-      <br>
-    {%else%}
     
+{%if image==None and imageString==None%}
+  <div class="image-area" style="margin-top: 3vw;">
+
+      <div>
+        <h3 style="color: azure; text-align:center; margin-top:1.2em" id= "lastSaveText" hidden>Initial Save</h3>
+        <img id="canvasImage" src="" hidden>
+      </div>
+  </div>
+  <div class="image-area">
+    <h3>Add file below</h3>
+    <input type="file" id="imageInput">
+    <br>
+    <h3 style="color: azure; text-align:center" id="currentChangesText" hidden>Current Changes</h3>
+    <canvas id="myCanvas" ></canvas>
+  </div>
+    {%else%}
     <input type="file" id="imageInput" hidden>
-    <img id="canvasImage" src={{imageString}} hidden>
-    <canvas id="myCanvas" style="margin-top: 75px;"></canvas>
+    <div>
+      <h3 style="color: azure; text-align:center" id= "lastSaveText" hidden>Last Save</h3>
+      <img id="canvasImage" src={{imageString}} hidden>
+    </div>
+    <div class="image-area">
+      <h3 style="color: azure; text-align:center" id="currentChangesText" hidden>Current Changes</h3>
+      <canvas id="myCanvas"></canvas>
+    </div>
+    
     <script>
       var canvasImage =document.getElementById("canvasImage")
       var canvas = document.getElementById("myCanvas");
@@ -32,8 +54,8 @@
     </script>
 
     
-    {%endif%}
-  </div>
+{%endif%}
+
 
   <div id="toolbar">
 
@@ -51,6 +73,7 @@
     <br>
     <br>
     <button id="getSuggestionButton">Get Suggestions</button>
+    <button id="undo">Reset Image</button>
     <div id="colorSuggestions" hidden>
       <button id="colorSuggestions1"></button>
       <button id="colorSuggestions2"> </button>
@@ -60,7 +83,7 @@
     </div>
     <h3 style="border-top: 3px solid #000000; margin-top:20px"></h3>
     <h3>Save Image</h3>
-    <button id="downloadButton">Download Image</button>
+    <button id="openDownload">Download Image</button>
     
 
     {%if updateForm != None%}
@@ -69,8 +92,21 @@
     {%else%}
     <button id="saveOnlineButton">Save Online</button>
     {%endif%}
+    <h3 style="border-top: 3px solid #000000; margin-top:20px"></h3>
+    <h3>View Options</h3>
+    <button id="compareMode">Compare Mode</button>
   </div>
   {%include 'imageForm.html'%}
+
+<div class="auth-form pop-up" id="downloadForm" hidden>
+  <button class="close" id="closeDownload">X</button>
+  <h3>Download Image</h3>
+  <div style="display: flex;">
+    <input id="fileName" maxlength="50" type="text"><p style="margin-left: 4px;">.png</p>
+  </div>
+  <button id="downloadButton">Download Image</button>
+</div>
+
   {%if updateForm!=None%}
 
   {%include "UpdateimageForm.html"%}
@@ -86,4 +122,7 @@
 {%endif%}
   
 </div>
+</div>
+{%endif%}
 {%endblock%}
+

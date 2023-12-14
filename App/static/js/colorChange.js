@@ -15,8 +15,6 @@
 
     const colorSuggestions = document.getElementById("colorSuggestions")
 
-
-    let savelist = []
     // Function to check if a color is within the range of another color
     function isWithinRange(color1, color2, range) {
       return (
@@ -39,7 +37,7 @@
     }
 
     // Function to apply the color change on the canvas
-    function applyColorChange() {
+    const applyColorChange=async()=> {
       let targetColor = {
         red: parseInt(targetColorPicker.value.substring(1, 3), 16),
         green: parseInt(targetColorPicker.value.substring(3, 5), 16),
@@ -56,7 +54,16 @@
 
       let range = parseInt(rangeSlider.value);
 
-      console.log(savelist)
+      // Save previous image data before applying color change
+      previousImageData = context.getImageData(0, 0, canvas.width, canvas.height);
+      previousImageURL = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+
+      let imageData = previousImageData;
+
+
+
+
+
       let pixels = imageData.data;
 
       for (let i = 0; i < pixels.length; i += 4) {
@@ -77,13 +84,21 @@
 
     // Function to revert the canvas image to the previous image
     function revertImage() {
-      if (previousImageData) {
-        context.putImageData(savelist.pop, 0, 0);
-      } 
+        
+      var canvasImage =document.getElementById("canvasImage");
+
+      canvasImage.src=initialData
+      var canvas = document.getElementById("myCanvas");
+      var ctx = canvas.getContext("2d");
+
+      canvas.height=canvasImage.height;
+      canvas.width = canvasImage.width;
+      ctx.drawImage(canvasImage, 0, 0);
     }
 
     // Function to handle image file upload
     function handleImageUpload(event) {
+      
       let imageInput = event.target;
       let imageFile = imageInput.files[0];
       let image = new Image();
@@ -96,6 +111,7 @@
         // Save the initial image as the previous image
         previousImageData = context.getImageData(0, 0, canvas.width, canvas.height);
         previousImageURL = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        document.getElementById("canvasImage").src=previousImageURL;
       };
 
       let reader = new FileReader();
@@ -150,19 +166,40 @@ const getColorSuggestions = async()=>{
 
 suggestionButton.addEventListener("click",getColorSuggestions);
 
+
+// Save functions
+const downloadForm = document.getElementById("downloadForm")
+const fileName = document.getElementById("fileName")
+
+function openDownloadOptions(){
+  downloadForm.hidden = false;
+  fileName.value = imageName.value
+}
+
+const closeDownloadOptions =document.getElementById("closeDownload")
+
+closeDownloadOptions.addEventListener("click",()=>{
+  downloadForm.hidden=true
+})
+
+
+const downloadFileButton = document.getElementById('downloadButton');
+
+downloadFileButton.addEventListener('click',download_image)
+
 function download_image(){
   var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
   var link = document.createElement('a');
-  link.download = "my-image.png";
+  link.download = fileName.value+".png";
   link.href = image;
   link.click();
 }
 
-// Save functions
+
 
 let downloadButton = document.getElementById("downloadButton");
 
-downloadButton.addEventListener("click",download_image);
+downloadButton.addEventListener("click",openDownloadOptions);
 
 let saveOnlineButton = document.getElementById("saveOnlineButton")
 
@@ -170,6 +207,8 @@ const getImageUrl = () =>{
   let data=canvas.toDataURL("image/png");
   return data;
 }
+
+document.getElementById("openDownload").addEventListener("click",openDownloadOptions)
 
 const saveForm = document.getElementById("saveForm");
 const imageString = document.getElementById("imageString");
@@ -201,20 +240,61 @@ let quickSave=document.getElementById("quickSave")
 
 let closeSaveform = document.getElementById("closeUpdateForm")
 let updateForm = document.getElementById("updateForm")
+if(closeSaveform!=null){
+  closeSaveform.addEventListener("click",()=>{
+    updateForm.hidden = true;
+  })
+}
 
-closeSaveform.addEventListener("click",()=>{
-  updateForm.hidden = true;
-})
+if(quickSave!=null){
+  quickSave.addEventListener("click",()=>{
+    updateImageString.value = getImageUrl();
+    updateDescription.value = imageDescription.value;
+    updateName.value = imageName.value;
+    updateForm.hidden=false;
+  })
+}
 
-quickSave.addEventListener("click",()=>{
-  updateImageString.value = getImageUrl();
-  updateDescription.value = imageDescription.value;
-  updateName.value = imageName.value;
-  updateForm.hidden=false;
-})
 
 saveOnlineButton.addEventListener("click",()=>{
   imageString.value= getImageUrl();
   saveForm.hidden= false;
 
 })
+
+const undoButton = document.getElementById("undo")
+
+
+undoButton.addEventListener('click',revertImage)
+
+const initialData=document.getElementById("canvasImage").src
+console.log(initialData)
+
+let compareModeButton = document.getElementById('compareMode');
+let compareMode = false;
+
+compareModeButton.addEventListener('click',toogleCompareMode)
+
+const lastSaveHeader = document.getElementById("lastSaveText");
+const currentWorkText = document.getElementById("currentChangesText");
+
+function toogleCompareMode(){
+  if (compareMode){
+    compareModeButton.innerHTML="Compare Mode";
+    compareMode = false;
+    currentWorkText.hidden = true;
+    lastSaveHeader.hidden = true
+
+    canvasImage.hidden = true;
+
+  }
+  else{
+    compareModeButton.innerHTML="Leave Compare Mode";
+    canvasImage.hidden=false;
+    currentWorkText.hidden = false;
+    lastSaveHeader.hidden = false;
+
+    compareMode=true;
+
+  }
+}
