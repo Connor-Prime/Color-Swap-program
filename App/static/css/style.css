@@ -34,11 +34,9 @@ body{
 	border: 5px black solid;
 }
 .auth-form{
-	margin-top: 15%;
 	background-color: white;
-	width: 50%;
-	margin-left: 25%;
 	padding: 3%;
+	position: fixed;
 }
 
 .auth-form>*>*{
@@ -60,8 +58,11 @@ body{
 }
 
 .pop-up{
-	position: absolute;
-	margin-top: 15vh;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 40%;;
+	transform: translate(-50%, -50%);
 }
 
 .close{
@@ -100,10 +101,21 @@ body{
 	margin-top: 15vh;
 }
 
+.auth-form-div{
+	margin-top: 5%;
+	margin-left: 30%;
+}
+
+.auth-form-div>*{
+	width: 40%;
+}
+
 .deleteButton{
 	background-color: red;
 	color: aliceblue;
-
+	margin-left: 1em;
+	margin-top: .5em;
+	margin-bottom: .5em;
 }
 
 .homepage{
@@ -111,4 +123,26 @@ body{
 	margin-top: 10vw;
 	margin-left: 15vw;
 	margin-right: auto;
+}
+
+.holder{        
+    width:100%;
+    display:block;
+}
+.popup{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 40%;;
+	transform: translate(-50%, -50%);
+}
+
+.content{
+    background:#fff;
+    padding: 28px 26px 33px 25px;
+}
+
+.quickInput{
+	color: white;
+	margin-left: 2%;
 }

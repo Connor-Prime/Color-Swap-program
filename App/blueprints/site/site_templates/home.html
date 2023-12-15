@@ -4,11 +4,15 @@
 <script src="../../../static/js/colorChange.js" defer></script>
 
 {%if image%}
-  <h3 style="color: aliceblue;">Name:</h3><input type="text" id ="imageName" value={{image.name}} style="background-color: aliceblue;" maxlength="50">
-  <h4 style="color: aliceblue;">Description:</h4><textarea type="text" id ="imageDescription" value={{image.description}} style="background-color: aliceblue; width:30vw" maxlength="200"></textarea>
+  <h3 class="quickInput">Name:</h3>
+  <input type="text" id ="imageName" value={{image.name}} style="margin-left: 2%" maxlength="50">
+  <h4 class="quickInput" >Description:</h4>
+  <textarea type="text" id ="imageDescription" value={{image.description}} style="margin-left: 2%; width:300px" maxlength="200"></textarea>
 {%else%}
-<h3 style="color: aliceblue;">Name:</h3><input type="text" id ="imageName" style="background-color: aliceblue;" maxlength="50">
-  <h4 style="color: aliceblue;">Description:</h4><textarea type="text" id ="imageDescription" style="background-color: aliceblue; width:30vw" maxlength="200"></textarea>
+  <h3 class="quickInput" >Name:</h3>
+  <input type="text" id ="imageName" class="quickInput" style="margin-left: 2%" maxlength="50">
+  <h4 class="quickInput" >Description:</h4>
+  <textarea type="text" id ="imageDescription" style="margin-left: 2%; width:300px" maxlength="200"></textarea>
 {%endif%}
 
 
@@ -124,7 +128,7 @@
 </div>
 </div>
 {%else%}
-<div class="homepage">
+<div class="">
   <h3 style="color: azure">Color Swap: We swap colors.</h3>
   <h3 style="color: azure">
     <a href="/signin" style="color: cyan;">Login</a> or <a href="/signup" style="color: cyan;">Register</a> Today.
