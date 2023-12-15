@@ -23,6 +23,6 @@ class SaveImageForm(FlaskForm):
 class UpdateImageForm(FlaskForm):
     id = StringField('Image id')
     image = StringField('Image')
-    name = StringField('name')
-    description=StringField('description')
+    name = StringField('Name')
+    description=StringField('Description')
     submit = SubmitField('Save image')

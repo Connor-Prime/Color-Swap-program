@@ -1,49 +1,51 @@
 {%extends 'base.html'%}
 
 {%block content%}
-
-<div class="auth-form">
-    {{form.hidden_tag()}}
-    <form action="" method="POST">
-        {{ form.hidden_tag() }}
-        <h3>Sign Up</h3>
-        <div>
-            {{form.username.label}}
-            {{ form.username(class='form-control', placeholder='username') }}
-            {% for error in form.username.errors %}
-                <span class="err-msg"> {{ error }}</span>
-            {% endfor %}
-        </div>
-        <div>
-            {{form.email.label}}
-            {{ form.email(class='form-control', placeholder='email') }}
-            {% for error in form.email.errors %}
-                <span class="err-msg"> {{ error }}</span>
-            {% endfor %}
-        </div>
-        <div>
-            {{form.password.label}}
-            {{ form.password(class='form-control', placeholder='password') }}
-            {% for error in form.password.errors %}
-                <span class="err-msg"> {{ error }}</span>
-            {% endfor %}
-        </div>
-        <div>
-            {{form.confirm_password.label}}
-            {{ form.confirm_password(class='form-control', placeholder='confirm password') }}
-            {% for error in form.confirm_password.errors %}
-                <span class="err-msg"> {{ error }}</span>
-            {% endfor %}
-        </div>
-
-       
-        <div>
-            {{ form.submit(class='btn btn-primary') }}
-        </div>
-    </form>
-
-
+<div class="auth-form-div">
+    <div class="auth-form">
+        {{form.hidden_tag()}}
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            <h3>Sign Up</h3>
+            <div>
+                {{form.username.label}}
+                {{ form.username(class='form-control', placeholder='username') }}
+                {% for error in form.username.errors %}
+                    <span class="err-msg"> {{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                {{form.email.label}}
+                {{ form.email(class='form-control', placeholder='email') }}
+                {% for error in form.email.errors %}
+                    <span class="err-msg"> {{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                {{form.password.label}}
+                {{ form.password(class='form-control', placeholder='password') }}
+                {% for error in form.password.errors %}
+                    <span class="err-msg"> {{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                {{form.confirm_password.label}}
+                {{ form.confirm_password(class='form-control', placeholder='confirm password') }}
+                {% for error in form.confirm_password.errors %}
+                    <span class="err-msg"> {{ error }}</span>
+                {% endfor %}
+            </div>
+    
+           
+            <div>
+                {{ form.submit(class='btn btn-primary') }}
+            </div>
+        </form>
+    
+    
+    </div> 
 </div>
+
 
 
 {%endblock content%}
