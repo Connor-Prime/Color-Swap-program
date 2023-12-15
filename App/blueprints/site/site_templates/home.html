@@ -6,12 +6,12 @@
 {%if image%}
   <h3 class="quickInput">Name:</h3>
   <input type="text" id ="imageName" value={{image.name}} style="margin-left: 2%" maxlength="50">
-  <h4 class="quickInput" >Description:</h4>
-  <textarea type="text" id ="imageDescription" value={{image.description}} style="margin-left: 2%; width:300px" maxlength="200"></textarea>
+  <h4 class="quickInput">Description:</h4>
+  <textarea type="text" id ="imageDescription" style="margin-left: 2%; width:300px" value={{image.description}} style="margin-left: 2%; width:300px" maxlength="200"></textarea>
 {%else%}
   <h3 class="quickInput" >Name:</h3>
   <input type="text" id ="imageName" class="quickInput" style="margin-left: 2%" maxlength="50">
-  <h4 class="quickInput" >Description:</h4>
+  <h4 class="quickInput" style="margin-left: 2%">Description:</h4>
   <textarea type="text" id ="imageDescription" style="margin-left: 2%; width:300px" maxlength="200"></textarea>
 {%endif%}
 
@@ -128,7 +128,7 @@
 </div>
 </div>
 {%else%}
-<div class="">
+<div class="homepage">
   <h3 style="color: azure">Color Swap: We swap colors.</h3>
   <h3 style="color: azure">
     <a href="/signin" style="color: cyan;">Login</a> or <a href="/signup" style="color: cyan;">Register</a> Today.

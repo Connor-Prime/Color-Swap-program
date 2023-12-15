@@ -17,7 +17,9 @@
             {% for error in form.description.errors %}
                 <span class="err-msg"> {{ error }}</span>
             {% endfor %}
-            {{ form.image(id="imageString") }}
+            <div hidden>
+                {{ form.image(id="imageString") }}
+            </div>
         </div>
         <div>
             {{ form.submit(class='btn btn-primary') }}
