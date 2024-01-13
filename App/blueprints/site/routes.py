@@ -14,7 +14,7 @@ site = Blueprint('site', __name__, template_folder='site_templates')
 
 
 @site.route("/")
-def shop(id=None,imageString=None):
+def shop(id=None,imageString=None,image=None):
 
     if id != None:
         updateForm = UpdateImageForm()
@@ -59,7 +59,7 @@ def open(image=None):
 
         print(btyeSize)
         if btyeSize > 120000:
-            flash(f"File too large. Max Size 90 bytes. Please store locally instead.", category="warning")
+            flash(f"File too large. Max Size 90 kilobytes. Please store locally instead.", category="warning")
             return shop(imageString=image)
 
         newImage = Image(name,image, user.get_id(),description)

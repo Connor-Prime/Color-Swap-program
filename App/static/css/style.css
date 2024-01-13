@@ -50,7 +50,12 @@ body{
 	align-items: center;
 	background-color: black;
 	padding: 10px;
+	width: 100%;
 	color: aliceblue;
+}
+
+.banner>*>a{
+	color: cyan;
 }
 
 .banner>a{
@@ -145,4 +150,10 @@ body{
 .quickInput{
 	color: white;
 	margin-left: 2%;
+}
+
+.text-input{
+	color: black;
+	margin-left: 2%; 
+	width:300px;
 }

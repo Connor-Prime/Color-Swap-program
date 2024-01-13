@@ -85,11 +85,10 @@
     // Function to revert the canvas image to the previous image
     function revertImage() {
         
-      var canvasImage =document.getElementById("canvasImage");
+      let canvasImage =document.getElementById("canvasImage");
 
-      canvasImage.src=initialData
-      var canvas = document.getElementById("myCanvas");
-      var ctx = canvas.getContext("2d");
+      let canvas = document.getElementById("myCanvas");
+      let ctx = canvas.getContext("2d");
 
       canvas.height=canvasImage.height;
       canvas.width = canvasImage.width;
@@ -110,8 +109,9 @@
 
         // Save the initial image as the previous image
         previousImageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        document.getElementById("canvasImage").src=canvas.toDataURL();
         previousImageURL = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-        document.getElementById("canvasImage").src=previousImageURL;
+        
       };
 
       let reader = new FileReader();
@@ -213,10 +213,13 @@ document.getElementById("openDownload").addEventListener("click",openDownloadOpt
 const saveForm = document.getElementById("saveForm");
 const imageString = document.getElementById("imageString");
 
-saveOnlineButton.addEventListener("click",()=>{
-  imageString.value= getImageUrl();
-  saveForm.hidden= false;
-})
+if(saveOnlineButton!= null){
+  saveOnlineButton.addEventListener("click",()=>{
+    imageString.value= getImageUrl();
+    saveForm.hidden= false;
+  })
+}
+
 
 let closefrom = document.getElementById("closeForm")
 
@@ -255,12 +258,14 @@ if(quickSave!=null){
   })
 }
 
+if(saveOnlineButton){
+  saveOnlineButton.addEventListener("click",()=>{
+    imageString.value= getImageUrl();
+    saveForm.hidden= false;
+  
+  })
+}
 
-saveOnlineButton.addEventListener("click",()=>{
-  imageString.value= getImageUrl();
-  saveForm.hidden= false;
-
-})
 
 const undoButton = document.getElementById("undo")
 
@@ -268,10 +273,9 @@ const undoButton = document.getElementById("undo")
 undoButton.addEventListener('click',revertImage)
 
 const initialData=document.getElementById("canvasImage").src
-console.log(initialData)
-
 let compareModeButton = document.getElementById('compareMode');
 let compareMode = false;
+
 
 compareModeButton.addEventListener('click',toogleCompareMode)
 
